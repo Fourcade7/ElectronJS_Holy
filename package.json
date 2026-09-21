@@ -1,0 +1,54 @@
+{
+  "name": "quron-desktop",
+  "productName": "Qur'on",
+  "version": "1.0.0",
+  "description": "Qur'on — o'zbekcha tarjima (desktop ilova)",
+  "private": true,
+  "main": "main.js",
+  "author": "idgroup5858",
+  "scripts": {
+    "build:react": "node scripts/build-react.js",
+    "generate-icon": "node scripts/generate-icon.js",
+    "start": "npm run build:react && electron .",
+    "dist": "npm run build:react && npm run generate-icon && electron-builder --win"
+  },
+  "devDependencies": {
+    "electron": "^34.0.0",
+    "electron-builder": "^25.1.8",
+    "png-to-ico": "^2.1.8",
+    "sharp": "^0.33.5"
+  },
+  "build": {
+    "appId": "uz.holy.quron",
+    "productName": "Qur'on",
+    "copyright": "Copyright (c) 2026",
+    "asar": false,
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "app/**/*"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": true,
+      "shortcutName": "Qur'on"
+    }
+  }
+}
